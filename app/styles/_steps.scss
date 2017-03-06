@@ -1,0 +1,22 @@
+#step-list{
+  counter-reset: steps;
+  .list-item{
+    counter-increment: steps;
+
+    .icon{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: auto;
+      width: 40px;
+      height: 40px;
+      border: 2px solid $white;
+      border-radius: 50%;
+      color: $white;
+      &:before{
+        content: counter(steps);
+      }
+    }
+
+  }
+}

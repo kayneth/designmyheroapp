@@ -1,0 +1,33 @@
+nav{
+  @extend .container-fluid;
+  .main-content{
+    @extend .row;
+    @extend .between-xs;
+
+    .logo{
+      width: 20vw;
+      display: inline-flex;
+      align-items: center;
+      & > * {
+        display: inline-block;
+        max-width: 50%;
+        text-transform: uppercase;
+      }
+      h1 span{
+        color: $accent-color;
+      }
+    }
+
+    ul.user-nav{
+
+      li{
+        display: inline-block;
+        a{
+          text-decoration: none;
+          color: $black;
+        }
+      }
+    }
+  }
+
+}
