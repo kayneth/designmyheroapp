@@ -34,9 +34,9 @@ angular
                 controllerAs: 'main'
             })
             .when('/create', {
-                templateUrl: 'views/create.html',
-                controller: 'CreateCtrl',
-                controllerAs: 'create'
+              templateUrl: 'views/create.html',
+              controller: 'CreateCtrl',
+              controllerAs: 'create'
             })
             .otherwise({
                 redirectTo: '/'

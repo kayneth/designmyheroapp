@@ -1,7 +1,13 @@
 .footer{
   padding-bottom: 40px;
+  text-align: center;
 
   .row{
+
+    @extend .center-sm;
+    @extend .start-md;
+
+
     div:first-child{
       text-align: center;
     }
@@ -26,5 +32,9 @@
         color: lighten($black, 40%);
       }
     }
+  }
+
+  @media all and (min-width: 48em){
+    text-align: initial;
   }
 }
