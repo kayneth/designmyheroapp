@@ -1,0 +1,11 @@
+.creation-env{
+  height: 90vh;
+  overflow: hidden;
+  margin  : 0;
+  padding : 0;
+  #designScene{
+    height: 100%;
+    width: 100%;
+    touch-action: none;
+  }
+}

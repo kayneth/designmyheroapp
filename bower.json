@@ -11,7 +11,8 @@
     "angular-route": "^1.4.0",
     "angular-sanitize": "^1.4.0",
     "angular-touch": "^1.4.0",
-    "flexboxgrid-sass": "^8.0.5"
+    "flexboxgrid-sass": "^8.0.5",
+    "babylonjs": "^2.5.0"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"

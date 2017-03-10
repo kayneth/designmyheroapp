@@ -8,10 +8,14 @@
  * Controller of the designmyheroappApp
  */
 angular.module('designmyheroappApp')
-  .controller('CreateCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+  .controller('CreateCtrl', ['threeD',function (threeD) {
+
+      var canvas = document.getElementById('designScene');
+
+      threeD.initialize(canvas);
+      var scene = threeD.createScene();
+      threeD.render();
+      threeD.resize();
+
+
+  }]);

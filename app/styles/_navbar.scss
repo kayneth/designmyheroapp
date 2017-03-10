@@ -10,6 +10,8 @@ nav{
       width: 20vw;
       display: inline-flex;
       align-items: center;
+      color: initial;
+      text-decoration: none;
       & > * {
         display: inline-block;
         max-width: 50%;

@@ -23,14 +23,12 @@
     <!-- Add your site or application content here -->
     <nav>
       <div class="main-content">
-        <div class="logo">
-            <a href="#!/">
-                <img src="images/logo.svg" alt="" class="img-responsive">
-                <h1>
-                    DesignMy<span>Hero</span>
-                </h1>
-            </a>
-        </div>
+        <a href="#!/" class="logo">
+            <img src="images/logo.svg" alt="" class="img-responsive">
+            <h1>
+                DesignMy<span>Hero</span>
+            </h1>
+        </a>
         <ul class="user-nav">
           <li>
             <a href="">
@@ -47,7 +45,7 @@
         </ul>
       </div>
       <ul class="sub-navbar">
-        <li><a href=""><i class="fa fa-pencil" aria-hidden="true"></i> Créer un costume</a></li>
+        <li><a href="#!/create"><i class="fa fa-pencil" aria-hidden="true"></i> Créer un costume</a></li>
         <li><a href=""><i class="fa fa-tags" aria-hidden="true"></i> Catégories</a></li>
         <li><a href=""><i class="fa fa-picture-o" aria-hidden="true"></i> Dernères créations</a></li>
         <li>
@@ -143,6 +141,7 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/babylonjs/dist/babylon.2.5.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -150,6 +149,7 @@
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/create.js"></script>
+        <script src="scripts/services/threed.js"></script>
         <!-- endbuild -->
 </body>
 </html>
