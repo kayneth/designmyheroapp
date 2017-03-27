@@ -12,7 +12,7 @@
     "angular-sanitize": "^1.4.0",
     "angular-touch": "^1.4.0",
     "flexboxgrid-sass": "^8.0.5",
-    "babylonjs": "^2.5.0"
+    "babylonjs": "master"
   },
   "devDependencies": {
     "angular-mocks": "^1.4.0"
