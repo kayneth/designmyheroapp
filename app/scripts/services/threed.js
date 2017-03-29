@@ -45,7 +45,7 @@ angular.module('designmyheroappApp')
             console.log(particleSystems);
         });
 
-        BABYLON.SceneLoader.ImportMesh("casque", "models/", "pilote2.babylon", scope.scene, function (newMeshes, particleSystems) {
+        BABYLON.SceneLoader.ImportMesh("casque", "http://127.0.0.1:8000/uploads/models/1/costumes/1/products/8/model/", "22-tete_test.babylon", scope.scene, function (newMeshes, particleSystems) {
             console.log(newMeshes);
             console.log(particleSystems);
         });
