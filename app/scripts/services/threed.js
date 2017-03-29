@@ -28,10 +28,9 @@ angular.module('designmyheroappApp')
         scope.scene = new BABYLON.Scene(scope.engine);
 
         // create a FreeCamera, and set its position to (x:0, y:5, z:-10)
-        scope.camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(0, 5,-12), scope.scene);
-
-        // target the camera to scene origin
-        scope.camera.setTarget(BABYLON.Vector3.Zero());
+        // scope.camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(0, 5,-12), scope.scene);
+        scope.camera = new BABYLON.ArcRotateCamera("camera1", 0, 5.0, 12, new BABYLON.Vector3(0, 10, 0), scope.scene);
+        scope.camera.setTarget(new BABYLON.Vector3(0, 3, 0))
 
         // attach the camera to the canvas
         scope.camera.attachControl(scope.canvas, false);
@@ -64,6 +63,7 @@ angular.module('designmyheroappApp')
     scope.render = function (){
         scope.engine.runRenderLoop(function(){
             scope.scene.render();
+            scope.scene.activeCamera.alpha += .001;
         });
     };
 
