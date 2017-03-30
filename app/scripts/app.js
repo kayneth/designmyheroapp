@@ -21,8 +21,8 @@ angular
   ])
     .run(['$rootScope', '$location', function($rootScope, $location) {
 
-    //$rootScope.apiRoot = "http://127.0.0.1:8000";
-    $rootScope.apiRoot = "http://api.sharecrea.iut-lepuy.fr";
+    $rootScope.apiRoot = "http://127.0.0.1:8000";
+    // $rootScope.apiRoot = "http://api.sharecrea.iut-lepuy.fr";
     $rootScope.api = $rootScope.apiRoot+"/api";
 
     }])

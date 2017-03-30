@@ -8,7 +8,7 @@
  * Service in the designmyheroappApp.
  */
 angular.module('designmyheroappApp')
-.service('threeD', function () {
+.service('threeD', ['$rootScope', function ($rootScope) {
 
     var scope = this;
 
@@ -16,6 +16,7 @@ angular.module('designmyheroappApp')
     scope.scene = null;
     scope.camera = null;
     scope.canvas = null;
+    scope.meshes = [];
 
     scope.initialize = function(canvas)
     {
@@ -38,15 +39,12 @@ angular.module('designmyheroappApp')
         // create a basic light, aiming 0,1,0 - meaning, to the sky
         var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0,1,0), scope.scene);
 
-        BABYLON.SceneLoader.ImportMesh("cape", "models/", "test.babylon", scope.scene, function (newMeshes, particleSystems) {
+        var cape = BABYLON.SceneLoader.ImportMesh("cape", "models/", "test.babylon", scope.scene, function (newMeshes, particleSystems) {
             newMeshes.position.y = 12;
             console.log(newMeshes);
             console.log(particleSystems);
-        });
 
-        BABYLON.SceneLoader.ImportMesh("casque", "http://127.0.0.1:8000/uploads/models/1/costumes/1/products/8/model/", "22-tete_test.babylon", scope.scene, function (newMeshes, particleSystems) {
-            console.log(newMeshes);
-            console.log(particleSystems);
+            scope.meshes.push(newMeshes[0]);
         });
 
 
@@ -74,4 +72,19 @@ angular.module('designmyheroappApp')
         });
     };
 
-  });
+    $rootScope.$on('show-model', function (event, model) {
+        // cape.dispose();
+        console.log(scope.meshes);
+        console.log(model);
+        var loader = new BABYLON.AssetsManager(scope.scene);
+        var newMesh = loader.addMeshTask("", "", "", model._links.model.href);
+        scope.meshes.push(newMesh);
+
+
+        BABYLON.SceneLoader.ImportMesh("", "", model._links.model.href, scope.scene, function (newMeshes, particleSystems) {
+            console.log(newMeshes);
+            newMeshes[0].dispose();
+        });
+    })
+
+  }]);
