@@ -16,7 +16,7 @@ angular.module('designmyheroappApp')
     scope.scene = null;
     scope.camera = null;
     scope.canvas = null;
-    scope.meshes = [];
+    scope.models = [];
 
     scope.initialize = function(canvas)
     {
@@ -31,7 +31,7 @@ angular.module('designmyheroappApp')
         // create a FreeCamera, and set its position to (x:0, y:5, z:-10)
         // scope.camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(0, 5,-12), scope.scene);
         scope.camera = new BABYLON.ArcRotateCamera("camera1", 0, 5.0, 12, new BABYLON.Vector3(0, 10, 0), scope.scene);
-        scope.camera.setTarget(new BABYLON.Vector3(0, 3, 0))
+        scope.camera.setTarget(new BABYLON.Vector3(0, 3, 0));
 
         // attach the camera to the canvas
         scope.camera.attachControl(scope.canvas, false);
@@ -45,6 +45,11 @@ angular.module('designmyheroappApp')
             console.log(particleSystems);
 
             scope.meshes.push(newMeshes[0]);
+        });
+
+        // Move the light with the camera
+        scope.scene.registerBeforeRender(function () {
+            light.position = scope.camera.position;
         });
 
 
@@ -73,18 +78,31 @@ angular.module('designmyheroappApp')
     };
 
     $rootScope.$on('show-model', function (event, model) {
-        // cape.dispose();
-        console.log(scope.meshes);
-        console.log(model);
         var loader = new BABYLON.AssetsManager(scope.scene);
-        var newMesh = loader.addMeshTask("", "", "", model._links.model.href);
-        scope.meshes.push(newMesh);
-
+        // var newMesh = loader.addMeshTask("", "", "", model._links.model.href);
 
         BABYLON.SceneLoader.ImportMesh("", "", model._links.model.href, scope.scene, function (newMeshes, particleSystems) {
-            console.log(newMeshes);
-            newMeshes[0].dispose();
+            var element = {};
+
+            scope.removeModel(model.category.name);
+
+            element.product = model;
+            element.meshes = newMeshes[0];
+            scope.models.push(element);
+
+            console.log(scope.models);
         });
-    })
+    });
+
+    scope.removeModel = function(type){
+
+        scope.models.forEach(function (element, index, array) {
+            if(element.product.category.name == type)
+            {
+                element.meshes.dispose();
+                array.splice(index, 1);
+            }
+        });
+    };
 
   }]);
