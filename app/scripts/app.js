@@ -19,27 +19,27 @@ angular
     'ngSanitize',
     'ngTouch'
   ])
-    .run(['$rootScope', '$location', function($rootScope, $location) {
+.run(['$rootScope', '$location', function($rootScope, $location) {
 
     $rootScope.apiRoot = "http://127.0.0.1:8000";
-    // $rootScope.apiRoot = "http://api.sharecrea.iut-lepuy.fr";
+    // $rootScope.apiRoot = "http://api.designmyhero.iut-lepuy.fr";
     $rootScope.api = $rootScope.apiRoot+"/api";
 
-    }])
-    .config(function ($routeProvider) {
-        $routeProvider
-            .when('/', {
-                templateUrl: 'views/main.html',
-                controller: 'MainCtrl',
-                controllerAs: 'main'
-            })
-            .when('/create', {
-              templateUrl: 'views/create.html',
-              controller: 'CreateCtrl',
-              controllerAs: 'create'
-            })
-            .otherwise({
-                redirectTo: '/'
-            });
-    })
+}])
+.config(function ($routeProvider) {
+    $routeProvider
+        .when('/', {
+            templateUrl: 'views/main.html',
+            controller: 'MainCtrl',
+            controllerAs: 'main'
+        })
+        .when('/create', {
+          templateUrl: 'views/create.html',
+          controller: 'CreateCtrl',
+          controllerAs: 'create'
+        })
+        .otherwise({
+            redirectTo: '/'
+        });
+})
 ;

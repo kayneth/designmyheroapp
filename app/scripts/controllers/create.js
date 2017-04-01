@@ -17,5 +17,4 @@ angular.module('designmyheroappApp')
       threeD.render();
       threeD.resize();
 
-
   }]);

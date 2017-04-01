@@ -39,19 +39,10 @@ angular.module('designmyheroappApp')
         // create a basic light, aiming 0,1,0 - meaning, to the sky
         var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0,1,0), scope.scene);
 
-        var cape = BABYLON.SceneLoader.ImportMesh("cape", "models/", "test.babylon", scope.scene, function (newMeshes, particleSystems) {
-            newMeshes.position.y = 12;
-            console.log(newMeshes);
-            console.log(particleSystems);
-
-            scope.meshes.push(newMeshes[0]);
-        });
-
         // Move the light with the camera
         scope.scene.registerBeforeRender(function () {
             light.position = scope.camera.position;
         });
-
 
         // move the sphere upward 1/2 of its height
         // sphere.position.y = 1;
