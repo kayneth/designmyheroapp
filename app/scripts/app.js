@@ -38,6 +38,11 @@ angular
           controller: 'CreateCtrl',
           controllerAs: 'create'
         })
+        .when('/latestcrea', {
+          templateUrl: 'views/latestcrea.html',
+          controller: 'LatestcreaCtrl',
+          controllerAs: 'latestcrea'
+        })
         .otherwise({
             redirectTo: '/'
         });
