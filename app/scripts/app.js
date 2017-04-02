@@ -54,6 +54,11 @@ angular
                 requiresLogin: true
             }
         })
+        .when('/latestcrea', {
+          templateUrl: 'views/latestcrea.html',
+          controller: 'LatestcreaCtrl',
+          controllerAs: 'latestcrea'
+        })
         .otherwise({
             redirectTo: '/'
         });
