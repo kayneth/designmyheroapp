@@ -9,6 +9,8 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog.css" />
+    <link rel="stylesheet" href="bower_components/ng-dialog/css/ngDialog-theme-default.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -21,7 +23,7 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <nav>
+    <nav ng-controller="NavbarCtrl">
       <div class="main-content">
         <a href="#!/" class="logo">
             <img src="images/logo.svg" alt="" class="img-responsive">
@@ -31,7 +33,7 @@
         </a>
         <ul class="user-nav">
           <li>
-            <a href="">
+            <a href="" ng-click="account()">
                 <i class="fa fa-user"></i>
               Mon compte
             </a>
@@ -142,6 +144,8 @@
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/babylonjs/dist/babylon.2.5.js"></script>
+    <script src="bower_components/angular-jwt/dist/angular-jwt.js"></script>
+    <script src="bower_components/ng-dialog/js/ngDialog.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -153,6 +157,10 @@
         <script src="scripts/directives/modellist.js"></script>
         <script src="scripts/services/productmodel.js"></script>
         <script src="scripts/services/basket.js"></script>
+        <script src="scripts/services/dmhmodal.js"></script>
+        <script src="scripts/services/dmhauthmanager.js"></script>
+        <script src="scripts/controllers/navbar.js"></script>
+        <script src="scripts/controllers/profile.js"></script>
         <!-- endbuild -->
 </body>
 </html>

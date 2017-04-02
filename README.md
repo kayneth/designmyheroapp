@@ -13,7 +13,7 @@ Running `grunt test` will run the unit tests with karma.
 
 ## TODO
 * Gestion Panier
-* Bouton de suppression d'un élement du panier
+* Bouton de suppression d'un élement d'un costume du panier
 * Mise en localStorage du panier
 * Envoie sur le serveur du panier
 * Intégrer la nouvelle maquette Main.html
@@ -29,4 +29,4 @@ Running `grunt test` will run the unit tests with karma.
 * Ajout bouton "Enregistrer Costume" avec question "public/privé"
 * Bouton supprimer création du panier
 * Costume Collapsible pour voir les produits
-* 
+* Page liste Creations

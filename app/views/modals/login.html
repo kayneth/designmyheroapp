@@ -1,0 +1,61 @@
+<div class="loginBox md-whiteframe-z2" layout="column">
+    <form>
+        <div>
+            <h2 class="md-toolbar-tools"><span>Login</span></h2>
+        </div>
+        <div class="md-padding" layout="column">
+            <div>
+                <label>Pseudo</label>
+                <input type="text" ng-model="user._username"/>
+            </div>
+            <div>
+                <label>Mot de passe</label>
+                <input type="password" ng-model="user._password"/>
+            </div>
+            <div layout="row" layout-align="center center" style="padding-top:20px">
+                <button class="md-raised md-primary" type="submit" ng-click="loginApi()">
+                    <span>Login</span>
+                    <!--<md-icon ng-show="loader">-->
+                        <!--<md-progress-circular class="md-hue-2 md-accent" md-diameter="20px"></md-progress-circular>-->
+                    <!--</md-icon>-->
+                </button>
+                <div flex="flex"></div>
+                <button href="" md-no-ink="md-no-ink">Mot de passe oublié ?</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="registerBox md-whiteframe-z1" layout="column">
+    <form>
+        <div>
+            <h2 class="md-toolbar-tools"><span>Inscription</span></h2>
+        </div>
+        <div class="md-padding" layout="column">
+            <div>
+                <label>Pseudo</label>
+                <input type="text" ng-model="registeringUser.username"/>
+            </div>
+            <div>
+                <label>E-mail</label>
+                <input type="text" ng-model="registeringUser.email"/>
+            </div>
+            <div>
+                <label>Mot de passe</label>
+                <input type="password" ng-model="registeringUser.plainPassword.first"/>
+            </div>
+            <div>
+                <label>Confirmation de mot de passe</label>
+                <input type="password" ng-model="registeringUser.plainPassword.second"/>
+            </div>
+            <div style="padding-top:20px">
+                <button class="md-raised md-primary" type="submit" ng-click="register()">
+                    <span>S'inscrire</span>
+                    <!--<md-icon ng-show="loader">-->
+                        <!--<md-progress-circular class="md-hue-2 md-accent" md-diameter="20px"></md-progress-circular>-->
+                    <!--</md-icon>-->
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
