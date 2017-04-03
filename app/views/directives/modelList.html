@@ -1,5 +1,5 @@
-<ul>
-    <li ng-repeat="model in models">
+<ul class="row">
+    <li ng-repeat="model in models" class="col-xs-6">
         <img src="{{ model._links.thumbnail.href }}" alt="{{ model.name }}" ng-click="showModel(model)">
     </li>
 </ul>

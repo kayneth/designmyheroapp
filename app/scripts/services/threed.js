@@ -17,11 +17,13 @@ angular.module('designmyheroappApp')
     scope.camera = null;
     scope.canvas = null;
     scope.models = [];
+    scope.preview2D = null;
+    scope.watermark = "DesignMyHero - APP";
 
     scope.initialize = function(canvas)
     {
-      scope.canvas = canvas;
-      scope.engine = new BABYLON.Engine(canvas, true);
+        scope.canvas = canvas;
+        scope.engine = new BABYLON.Engine(canvas, true);
     };
 
     scope.createScene = function() {
@@ -49,6 +51,23 @@ angular.module('designmyheroappApp')
 
         // create a built-in "ground" shape; its constructor takes the same 5 params as the sphere's one
         var ground = BABYLON.Mesh.CreateGround('ground1', 6, 6, 2, scope.scene);
+
+        // scope.scene.clearColor = new BABYLON.Color4(0,0,0,0.-1);
+
+        //http://stackoverflow.com/questions/29671689/how-to-select-one-mesh-and-not-all-the-mesh-clicked-in-babylonjs
+        // var mat = new BABYLON.StandardMaterial("mat", scope.scene);
+        // mat.diffuseColor = BABYLON.Color3.Blue();
+        //
+        // scope.scene.onPointerMove = function (evt, pickingInfo) {
+        //     //pickingInfo doesn'T work for some reason, must debug!
+        //     var pickResult = scope.scene.pick(scope.scene.pointerX, scope.scene.pointerY);
+        //     scope.scene.meshes.forEach(function (m) {
+        //         m.material = null;
+        //     });
+        //     if (pickResult.pickedMesh) {
+        //         pickResult.pickedMesh.material = mat;
+        //     }
+        // };
 
         // return the created scene
         return scope.scene;
@@ -94,6 +113,95 @@ angular.module('designmyheroappApp')
                 array.splice(index, 1);
             }
         });
+    };
+
+    scope.screenshot = function () {
+        var cameraScreen = new BABYLON.ArcRotateCamera("screenshot", 0, 5.0, 12, new BABYLON.Vector3(0, 10, 0), scope.scene);
+        cameraScreen.setTarget(new BABYLON.Vector3(0, 3, 0));
+        var size = { precision: 2 };
+        var image = BABYLON.Tools.CreateScreenshot(scope.engine, cameraScreen, size);
+        console.log(image);
+    };
+
+    scope.toBlob = function () {
+        if (scope.canvas.toBlob) {
+            scope.canvas.toBlob(
+                function (blob) {
+                    scope.preview2D = window.URL.createObjectURL(blob)  ;
+                    console.log(blob);
+                    // Do something with the blob object,
+                    // e.g. creating a multipart form for file uploads:
+                    // var formData = new FormData();
+                    // formData.append('file', blob, fileName);
+                    /* ... */
+                },
+                'image/png'
+            );
+        }
+    };
+
+    scope.createScreenshot3D = function (engine, size, callback, camera) {
+            engine.scenes[0].activeCamera = camera;
+
+            var size = size || {
+                    width: 512,
+                    height: 512
+                };
+
+                console.log("test");
+            // this.engine.shadowGenerator.getShadowMap().render();
+            var texture = new BABYLON.RenderTargetTexture("screenShot", size, scope.engine.scenes[0], true, false);
+            texture.renderList = scope.engine.scenes[0].meshes;
+
+            texture.onAfterRender = function() {
+                // Read the contents of the framebuffer
+                var numberOfChannelsByLine = size.width * 4;
+                var halfHeight = size.height / 2;
+
+                //Reading datas from WebGL
+                var data = scope.engine.readPixels(0, 0, size.width, size.height);
+
+                for (var i = 0; i < halfHeight; i++) {
+                    for (var j = 0; j < numberOfChannelsByLine; j++) {
+                        var currentCell = j + i * numberOfChannelsByLine;
+                        var targetLine = size.height - i - 1;
+                        var targetCell = j + targetLine * numberOfChannelsByLine;
+
+                        var temp = data[currentCell];
+                        data[currentCell] = data[targetCell];
+                        data[targetCell] = temp;
+                    }
+                }
+
+                // Create a temporary canvas to draw the result using the pixel array.
+                this.tempCanvas = this.tempCanvas || document.createElement("canvas");
+                this.tempCanvas.width = size.width;
+                this.tempCanvas.height = size.height;
+
+                var context = this.tempCanvas.getContext("2d");
+                var imageData = context.createImageData(size.width, size.height);
+                imageData.data.set(data);
+                context.putImageData(imageData, 0, 0);
+
+                // WATERMARK
+                context.fillStyle = "rgba(8, 102, 110, 0.7)";
+                context.font = "20px Arial";
+                context.fillText(scope.engine.watermark, 260, 505);
+
+                // Finally create the canvas used has image.
+                var ssCanvas = document.createElement("canvas");
+                ssCanvas.width = size.width;
+                ssCanvas.height = size.height;
+
+                var ssContext = ssCanvas.getContext("2d");
+                ssContext.drawImage(this.tempCanvas, 0, 0, size.width, size.height);
+
+                callback(ssCanvas);
+            }.bind(this);
+
+            engine.scenes[0].incrementRenderId();
+
+            engine.scenes[0].activeCamera = this.engine.camera;
     };
 
   }]);

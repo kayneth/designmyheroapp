@@ -34,6 +34,7 @@ angular.module('designmyheroappApp')
       localStorage.setItem('JWT', res.data.token);
       localStorage.setItem('refresh_token', res.data.refresh_token);
       localStorage.setItem('roles', res.data.data.roles);
+      $rootScope.$broadcast('authenticated');
       return jwt;
     });
   };
@@ -41,10 +42,11 @@ angular.module('designmyheroappApp')
   scope.login = function (user) {
 
     $http.post($rootScope.api + '/login_check', user, {skipAuthorization: true}).then(function success(res) {
+      console.log(res);
       localStorage.setItem("access_token", res.data.token);
       localStorage.setItem("refresh_token", res.data.refresh_token);
-      //localStorage.setItem('roles', res.data.data.roles);
-      console.log(res);
+      var roles = jwtHelper.decodeToken(scope.access_token).roles;
+      localStorage.setItem('roles', roles);
       $rootScope.$broadcast('authenticated');
       $rootScope.isAuthenticated = true;
       $location.path('/');

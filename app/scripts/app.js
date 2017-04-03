@@ -25,11 +25,12 @@ angular
 
     $rootScope.apiRoot = "http://127.0.0.1:8000";
     // $rootScope.apiRoot = "http://api.designmyhero.iut-lepuy.fr";
-    $rootScope.api = $rootScope.apiRoot+"/api";
+    $rootScope.api =$rootScope.apiRoot+"/api";
 
     dmhAuthManager.initialize();
 
     $rootScope.$on('tokenHasExpired', function() {
+        $rootScope.$broadcast('unauthenticated');
         dmhAuthManager.refreshToken();
     });
 
