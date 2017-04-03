@@ -8,10 +8,8 @@
  * Controller of the designmyheroappApp
  */
 angular.module('designmyheroappApp')
-  .controller('ProfileCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+  .controller('ProfileCtrl', ['$scope', '$rootScope', 'dmhAuthManager', function ($scope, $rootScope, dmhAuthManager) {
+
+      $scope.authManager = dmhAuthManager;
+
+  }]);
