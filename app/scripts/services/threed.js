@@ -18,7 +18,7 @@ angular.module('designmyheroappApp')
     scope.canvas = null;
     scope.models = [];
     scope.preview2D = null;
-    scope.watermark = "DesignMyHero - APP";
+    scope.watermark = "Costume généré avec l'application DesignMyHero";
 
     scope.initialize = function(canvas)
     {
@@ -34,6 +34,8 @@ angular.module('designmyheroappApp')
         // scope.camera = new BABYLON.FreeCamera('camera1', new BABYLON.Vector3(0, 5,-12), scope.scene);
         scope.camera = new BABYLON.ArcRotateCamera("camera1", 0, 5.0, 12, new BABYLON.Vector3(0, 10, 0), scope.scene);
         scope.camera.setTarget(new BABYLON.Vector3(0, 3, 0));
+        scope.camera.upperRadiusLimit = 20;
+        scope.camera.lowerRadiusLimit = 5;
 
         // attach the camera to the canvas
         scope.camera.attachControl(scope.canvas, false);
@@ -45,9 +47,6 @@ angular.module('designmyheroappApp')
         scope.scene.registerBeforeRender(function () {
             light.position = scope.camera.position;
         });
-
-        // move the sphere upward 1/2 of its height
-        // sphere.position.y = 1;
 
         // create a built-in "ground" shape; its constructor takes the same 5 params as the sphere's one
         var ground = BABYLON.Mesh.CreateGround('ground1', 6, 6, 2, scope.scene);
@@ -115,14 +114,6 @@ angular.module('designmyheroappApp')
         });
     };
 
-    scope.screenshot = function () {
-        var cameraScreen = new BABYLON.ArcRotateCamera("screenshot", 0, 5.0, 12, new BABYLON.Vector3(0, 10, 0), scope.scene);
-        cameraScreen.setTarget(new BABYLON.Vector3(0, 3, 0));
-        var size = { precision: 2 };
-        var image = BABYLON.Tools.CreateScreenshot(scope.engine, cameraScreen, size);
-        console.log(image);
-    };
-
     scope.toBlob = function () {
         if (scope.canvas.toBlob) {
             scope.canvas.toBlob(
@@ -141,6 +132,9 @@ angular.module('designmyheroappApp')
     };
 
     scope.createScreenshot3D = function (engine, size, callback, camera) {
+        var camera = camera || new BABYLON.ArcRotateCamera("screenshot", 0, 0, 0, new BABYLON.Vector3(0, 2, 0), scope.scene);
+        camera.setPosition(new BABYLON.Vector3(0, 3, -7));
+
             engine.scenes[0].activeCamera = camera;
 
             var size = size || {
@@ -148,16 +142,13 @@ angular.module('designmyheroappApp')
                     height: 512
                 };
 
-                console.log("test");
             // this.engine.shadowGenerator.getShadowMap().render();
             var texture = new BABYLON.RenderTargetTexture("screenShot", size, scope.engine.scenes[0], true, false);
             texture.renderList = scope.engine.scenes[0].meshes;
-
             texture.onAfterRender = function() {
                 // Read the contents of the framebuffer
                 var numberOfChannelsByLine = size.width * 4;
                 var halfHeight = size.height / 2;
-
                 //Reading datas from WebGL
                 var data = scope.engine.readPixels(0, 0, size.width, size.height);
 
@@ -184,9 +175,13 @@ angular.module('designmyheroappApp')
                 context.putImageData(imageData, 0, 0);
 
                 // WATERMARK
-                context.fillStyle = "rgba(8, 102, 110, 0.7)";
+                context.fillStyle = "rgba(183, 72, 72, 1)";
                 context.font = "20px Arial";
-                context.fillText(scope.engine.watermark, 260, 505);
+                context.fillText(scope.watermark, 40, size.height - 20);
+
+                //WATERMARK LOGO
+                var img = document.getElementById("logo-nav");
+                context.drawImage(img, 20, 20, 50,50);
 
                 // Finally create the canvas used has image.
                 var ssCanvas = document.createElement("canvas");
@@ -201,7 +196,12 @@ angular.module('designmyheroappApp')
 
             engine.scenes[0].incrementRenderId();
 
-            engine.scenes[0].activeCamera = this.engine.camera;
+            texture.render(true);
+            texture.dispose();
+
+            texture = null;
+
+            engine.scenes[0].activeCamera = scope.camera;
     };
 
-  }]);
+}]);

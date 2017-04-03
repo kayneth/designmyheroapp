@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html ng-app="designmyheroappApp">
   <head>
     <meta charset="utf-8">
     <title>Design My Hero</title>
@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
-  <body ng-app="designmyheroappApp">
+  <body>
     <!--[if lte IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -26,7 +26,7 @@
     <nav ng-controller="NavbarCtrl">
       <div class="main-content">
         <a href="#!/" class="logo">
-            <img src="images/logo.svg" alt="" class="img-responsive">
+            <img src="images/logo.svg" alt="" id="logo-nav" class="img-responsive">
             <h1>
                 DesignMy<span>Hero</span>
             </h1>
@@ -162,6 +162,8 @@
         <script src="scripts/controllers/profile.js"></script>
         <script src="scripts/controllers/latestcrea.js"></script>
         <script src="scripts/librairies/canvasToBlob.js"></script>
+        <script src="scripts/directives/fbshare.js"></script>
+        <script src="scripts/services/creation.js"></script>
         <!-- endbuild -->
 </body>
 </html>

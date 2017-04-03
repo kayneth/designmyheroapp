@@ -20,14 +20,10 @@ angular.module('designmyheroappApp')
 
       $scope.screenshot = function () {
             // threeD.screenshot();
-            threeD.createScreenshot3D(threeD.engine, {
-                  width: 512,
-                  height: 512
-            }, function(ssCanvas) {
+            threeD.createScreenshot3D(threeD.engine, null, function(ssCanvas) {
+                  console.log(ssCanvas);
                   $scope.screenshot = ssCanvas.toDataURL();
                   document.getElementById('preview2D').src = this.screenshot;
-            }.bind(this), threeD.camera);
-            // threeD.toBlob();
-            // document.getElementById('preview2D').src = threeD.preview2D;
+            }.bind(this));
       };
 }]);
