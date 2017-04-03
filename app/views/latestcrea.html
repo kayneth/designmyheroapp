@@ -1,1 +1,40 @@
-<p>This is the latestcrea view.</p>
+<section id="last-creations">
+    <header class="center-xs">
+        <h2>
+            Dernières créations
+        </h2>
+    </header>
+
+    <div id="creationsList" class="container-fluid">
+        <div class="row">
+
+            <div class="card-reveal col-md-4 col-xs-12" ng-repeat="crea in lastcrea">
+                <a href="">
+                    <div class="img-container">
+                        <img src="{{ crea.preview.url }}" alt="{{ crea.name }}">
+                        <div class="hidden">
+                            <div class="caption">
+                                <div class="card-content centered">
+                                    <p class="title">
+                                       {{ crea.name }}</br>
+                                        créé par {{ crea.user.username }}
+                                    </p>
+                                    <a href="" class="btn-discover">Découvrir</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row end-xs">
+            <a href="" class="btn-flat red-text">
+                Toutes les créations <i class="fa fa-angle-right" aria-hidden="true"></i>
+            </a>
+        </div>
+    </div>
+</section>

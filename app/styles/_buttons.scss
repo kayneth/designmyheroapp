@@ -91,9 +91,20 @@
   border-radius: 5px;
   text-decoration: none;
   text-transform: uppercase;
+  text-align: center;
   background: $primary-color;
   color: $white;
+}
 
+.btn-discover{
+  display: block;
+  width: 40%;
+  margin: 10px auto;
+  padding: 10px;
+  text-decoration: none;
+  text-transform: uppercase;
+  background: $accent-color;
+  color: $white;
 }
 
 .rounded{
