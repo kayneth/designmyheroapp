@@ -19,12 +19,13 @@ angular
     'ngSanitize',
     'ngTouch',
     'angular-jwt',
-    'ngDialog'
+    'ngDialog',
+    'duScroll'
 ])
 .run(['$rootScope', '$location', 'dmhAuthManager', function($rootScope, $location, dmhAuthManager) {
 
     $rootScope.apiRoot = "http://127.0.0.1:8000";
-    // $rootScope.apiRoot = "http://api.designmyhero.iut-lepuy.fr";
+    $rootScope.apiRoot = "http://api.designmyhero.iut-lepuy.fr";
     $rootScope.api =$rootScope.apiRoot+"/api";
 
     dmhAuthManager.initialize();
