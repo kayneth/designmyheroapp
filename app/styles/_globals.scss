@@ -6,6 +6,7 @@
 body, html{
   margin:0;
   padding:0;
+  height: 100%;
 }
 
 a{
@@ -18,4 +19,8 @@ section{
     padding-top: 60px;
     padding-bottom: 20px;
   }
+}
+
+footer{
+  position: relative;
 }
