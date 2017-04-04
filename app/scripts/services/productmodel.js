@@ -15,7 +15,7 @@ angular.module('designmyheroappApp')
     scope.getModels = function () {
         var deferred = $q.defer();
 
-        $http.get($rootScope.api+'/products').then(function(res) {
+        $http.get($rootScope.api+'/products', {skipAuthorization: true}).then(function(res) {
             deferred.resolve(res.data);
         }, function (res) {
             deferred.reject(res);

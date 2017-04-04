@@ -83,6 +83,24 @@
   }
 }
 
+.btn-outline{
+  border: 1px solid $primary-color;
+  color: $primary-color;
+  background: none;
+  padding: 5px;
+  margin: 5px;
+  outline: none;
+
+  &.red{
+    border: 1px solid $accent-color;
+    color: $accent-color;
+  }
+
+  &.blue{
+
+  }
+}
+
 #btn-contact{
   display: block;
   width: 60%;

@@ -19,20 +19,16 @@ angular
     'ngSanitize',
     'ngTouch',
     'angular-jwt',
-    'ngDialog'
+    'ngDialog',
+    'ngToast'
 ])
 .run(['$rootScope', '$location', 'dmhAuthManager', function($rootScope, $location, dmhAuthManager) {
 
     $rootScope.apiRoot = "http://127.0.0.1:8000";
-    // $rootScope.apiRoot = "http://api.designmyhero.iut-lepuy.fr";
+    $rootScope.apiRoot = "http://api.designmyhero.iut-lepuy.fr";
     $rootScope.api =$rootScope.apiRoot+"/api";
 
     dmhAuthManager.initialize();
-
-    $rootScope.$on('tokenHasExpired', function() {
-        $rootScope.$broadcast('unauthenticated');
-        dmhAuthManager.refreshToken();
-    });
 
 }])
 .config(function ($routeProvider) {

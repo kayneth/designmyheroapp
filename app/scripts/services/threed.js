@@ -8,7 +8,7 @@
  * Service in the designmyheroappApp.
  */
 angular.module('designmyheroappApp')
-.service('threeD', ['$rootScope', function ($rootScope) {
+.service('threeD', ['$rootScope', '$q', function ($rootScope, $q) {
 
     var scope = this;
 
@@ -202,6 +202,18 @@ angular.module('designmyheroappApp')
             texture = null;
 
             engine.scenes[0].activeCamera = scope.camera;
+    };
+
+    scope.getScreenshotURL = function () {
+        var deffered = $q.defer();
+
+       scope.createScreenshot3D(scope.engine, null, function(ssCanvas) {
+            scope.screenshot = ssCanvas.toDataURL();
+            // document.getElementById('preview2D').src = scope.screenshot;
+           deffered.resolve(scope.screenshot);
+        }.bind(scope));
+
+        return deffered.promise;
     };
 
 }]);
