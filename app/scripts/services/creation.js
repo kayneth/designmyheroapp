@@ -12,6 +12,8 @@ angular.module('designmyheroappApp')
 
   var scope = this;
 
+  scope.currentCreation = [];
+
   scope.getCreations = function ()
   {
     var deffered = $q.defer();

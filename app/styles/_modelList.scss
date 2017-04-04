@@ -1,8 +1,9 @@
 model-list{
-  overflow: scroll;
+  overflow-y: scroll;
   ul{
     li{
       list-style: none;
+      //margin: 0px;
     }
   }
 }

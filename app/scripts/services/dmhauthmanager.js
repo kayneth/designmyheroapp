@@ -8,7 +8,7 @@
  * Service in the designmyheroappApp.
  */
 angular.module('designmyheroappApp')
-.service('dmhAuthManager', ['$http', '$rootScope', 'authManager', 'jwtHelper', '$location', function ($http, $rootScope, authManager,jwtHelper, $location) {
+.service('dmhAuthManager', ['$http', '$rootScope', 'authManager', 'jwtHelper', '$location', 'dmhToast', function ($http, $rootScope, authManager,jwtHelper, $location, dmhToast) {
   // AngularJS will instantiate a singleton by calling "new" on this function
   var scope = this;
 
@@ -18,9 +18,14 @@ angular.module('designmyheroappApp')
   scope.initialize = function () {
     authManager.checkAuthOnRefresh();
     // authManager.redirectWhenUnauthenticated();
+
+    scope.onAuth();
+    scope.onTokenHasExpired();
   };
 
   scope.refreshToken = function (refreshToken) {
+    refreshToken = refreshToken || localStorage.getItem("refresh_token");
+
     $http({
       url: $rootScope.api+'/token/refresh',
       skipAuthorization: true,
@@ -28,14 +33,21 @@ angular.module('designmyheroappApp')
       refresh_token : refreshToken,
       data: {"refresh_token" : refreshToken}
     }).then(function(res) {
+
       var jwt = res.data.token;
 
       jwtHelper.getTokenExpirationDate(jwt);
-      localStorage.setItem('JWT', res.data.token);
+
+      localStorage.setItem('access_token', res.data.token);
       localStorage.setItem('refresh_token', res.data.refresh_token);
       localStorage.setItem('roles', res.data.data.roles);
+
       $rootScope.$broadcast('authenticated');
+
       return jwt;
+
+    }, function (res) {
+      console.log(res);
     });
   };
 
@@ -43,13 +55,25 @@ angular.module('designmyheroappApp')
 
     $http.post($rootScope.api + '/login_check', user, {skipAuthorization: true}).then(function success(res) {
       console.log(res);
+
+      scope.access_token = res.data.token;
+
+      var roles = jwtHelper.decodeToken(scope.access_token).roles;
+      var username = jwtHelper.decodeToken(scope.access_token).username;
+
+      //On stocke en Localstorage les data pour une utilisation futur
       localStorage.setItem("access_token", res.data.token);
       localStorage.setItem("refresh_token", res.data.refresh_token);
-      var roles = jwtHelper.decodeToken(scope.access_token).roles;
+
       localStorage.setItem('roles', roles);
+      localStorage.setItem('username', username);
+
       $rootScope.$broadcast('authenticated');
-      $rootScope.isAuthenticated = true;
+
+      dmhToast.create('Vous êtes bien connecté en tant que ' + username);
+
       $location.path('/');
+
     }, function error(res) {
       console.log(res);
     });
@@ -62,6 +86,7 @@ angular.module('designmyheroappApp')
     $location.path('/');
     $rootScope.$broadcast('unauthenticated');
     $rootScope.isAuthenticated = false;
+    dmhToast.create('Vous êtes bien déconnecté. En espérant vous revoir très bientôt !');
   };
 
   scope.isAdmin = function () {
@@ -85,6 +110,20 @@ angular.module('designmyheroappApp')
     }
 
     return false;
-  }
+  };
+
+  scope.onTokenHasExpired = function () {
+    $rootScope.$on('tokenHasExpired', function() {
+      $rootScope.$broadcast('unauthenticated');
+      scope.refreshToken();
+    });
+  };
+
+  scope.onAuth = function () {
+    $rootScope.$on('authenticated', function() {
+      scope.refreshToken();
+      $rootScope.isAuthenticated = true;
+    });
+  };
 
 }]);

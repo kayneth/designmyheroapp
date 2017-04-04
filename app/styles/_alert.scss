@@ -1,0 +1,28 @@
+.alert{
+  padding: 10px;
+  color: $white;
+
+  .close {
+    margin-left: 5px;
+    float: right;
+    border: none;
+    background: none;
+    color: $white;
+  }
+}
+
+.alert-warning{
+  background: #BC7A00;
+}
+
+.alert-info{
+  background: #5fa061;
+}
+
+.alert-success{
+  background: $primary-color;
+}
+
+.alert-danger{
+  background: $accent-color;
+}

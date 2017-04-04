@@ -1,11 +1,22 @@
 <div class="container-fluid">
     <div class="creation-env row">
-        <model-list class="col-xs-6 col-sm-4"></model-list>
-        <canvas id="designScene" class="col-xs-6 col-sm-8"></canvas>
+        <model-list class="col-xs-6 col-sm-5"></model-list>
+        <canvas id="designScene" class="col-xs-6 col-sm-4"></canvas>
+        <div class="actions col-sm-3">
+            <div class="row center-xs middle-xs">
+                <div class="col-xs-12">
+                    <div class="row center-xs">
+                        <button ng-click="saveCurrentCostume()" class="btn-outline col-xs-10">
+                            Enregistrer ma création
+                        </button>
+                        <button ng-click="saveCurrentCostume()" class="btn-outline red col-xs-10">
+                            Ajouter au panier
+                        </button>
+                        <!--<fb-share></fb-share>-->
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <button ng-click="screenshot()">Screen</button>
 
-    <img ng-src="threeD.preview2D" alt="" id="preview2D">
-
-    <fb-share></fb-share>
 </div>

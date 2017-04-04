@@ -20,7 +20,8 @@ angular
     'ngTouch',
     'angular-jwt',
     'ngDialog',
-    'duScroll'
+    'duScroll',
+    'ngToast'
 ])
 .run(['$rootScope', '$location', 'dmhAuthManager', function($rootScope, $location, dmhAuthManager) {
 
@@ -29,11 +30,6 @@ angular
     $rootScope.api =$rootScope.apiRoot+"/api";
 
     dmhAuthManager.initialize();
-
-    $rootScope.$on('tokenHasExpired', function() {
-        $rootScope.$broadcast('unauthenticated');
-        dmhAuthManager.refreshToken();
-    });
 
 }])
 .config(function ($routeProvider) {

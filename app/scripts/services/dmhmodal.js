@@ -28,7 +28,7 @@ angular.module('designmyheroappApp')
             };
 
             $scope.register = function () {
-                $http.post($rootScope.api + '/register/', $scope.registeringUser, {skipAuthorization: true}).then(function success(res) {
+                $http.post($rootScope.api + '/register', $scope.registeringUser, {skipAuthorization: true}).then(function success(res) {
                     console.log(res);
                     // $scope.user._username = $scope.registeringUser.username;
                     // $scope.user._password = $scope.registeringUser.plainPassword.first;
@@ -39,6 +39,18 @@ angular.module('designmyheroappApp')
             };
         }]
       })
+    };
+
+    scope.saveCreation = function (screenshot) {
+      ngDialog.open({
+          template: 'views/modals/saveCreation.html',
+          controller: ['$scope', 'creation', function ($scope, creation) {
+              $scope.screenshot = screenshot;
+              $scope.postCreation = function () {
+                  creation.post();
+              }
+          }]
+      });
     };
 
 
