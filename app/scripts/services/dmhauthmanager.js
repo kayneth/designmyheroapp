@@ -53,7 +53,7 @@ angular.module('designmyheroappApp')
 
   scope.login = function (user) {
 
-    $http.post($rootScope.api + '/login_check', user, {skipAuthorization: true}).then(function success(res) {
+    $http.post($rootScope.api + '/login_check', user).then(function success(res) {
       console.log(res);
 
       scope.access_token = res.data.token;

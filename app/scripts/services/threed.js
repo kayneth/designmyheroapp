@@ -8,7 +8,7 @@
  * Service in the designmyheroappApp.
  */
 angular.module('designmyheroappApp')
-.service('threeD', ['$rootScope', '$q', function ($rootScope, $q) {
+.service('threeD', ['$rootScope', '$q', 'creation', function ($rootScope, $q, creation) {
 
     var scope = this;
 
@@ -98,18 +98,22 @@ angular.module('designmyheroappApp')
             element.product = model;
             element.meshes = newMeshes[0];
             scope.models.push(element);
+            creation.currentCreation.products.push(model.id);
 
             console.log(scope.models);
+            console.log(creation.currentCreation);
         });
     });
 
     scope.removeModel = function(type){
 
         scope.models.forEach(function (element, index, array) {
+            console.log(element);
             if(element.product.category.name == type)
             {
                 element.meshes.dispose();
                 array.splice(index, 1);
+                creation.currentCreation.products.splice(index, 1);
             }
         });
     };

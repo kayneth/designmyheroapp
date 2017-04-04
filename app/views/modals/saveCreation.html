@@ -4,16 +4,26 @@
             <img ng-src="{{ screenshot }}" alt="" id="preview2D" class="img-responsive">
         </div>
     </div>
-    <div class="row">
-        <div class="col-xs-12">
-            <label for="private">Poster ma création en public ?</label>
-            <input type="radio" id="private" name="private" value="0">Oui</input>
-            <input type="radio" name="private" value="1">Non</radio>
+    <form ng-submit="postCreation()">
+        <div class="row">
+            <div class="col-xs-12">
+                <label for="name">Le nom de votre création</label>
+                <input type="text" id="name" ng-model="creation.name" placeholder="Ma superbe créations">
+            </div>
+            <div class="col-xs-12">
+                <p for="private">Poster ma création en public ?</p>
+            </div>
+            <div class="col-xs-6">
+                <input type="radio" id="private" ng-model="creation.private" ng-value="true" id="private"><label for="private">Non</label>
+            </div>
+            <div class="col-xs-6">
+                <input type="radio" ng-model="creation.private" ng-value="false" id="public"> <label for="public">Oui</label>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-12">
-            <input type="submit" class="btn-flat-basic">
+        <div class="row">
+            <div class="col-xs-12">
+                <input type="submit" class="btn-outline">
+            </div>
         </div>
-    </div>
+    </form>
 </div>

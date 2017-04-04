@@ -45,9 +45,11 @@ angular.module('designmyheroappApp')
       ngDialog.open({
           template: 'views/modals/saveCreation.html',
           controller: ['$scope', 'creation', function ($scope, creation) {
+              $scope.creation = creation.currentCreation;
+              console.log($scope.creation);
               $scope.screenshot = screenshot;
               $scope.postCreation = function () {
-                  creation.post();
+                  creation.post(creation.currentCreation);
               }
           }]
       });
