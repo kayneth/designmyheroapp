@@ -47,9 +47,9 @@ angular.module('designmyheroappApp')
             }
         },
         {
-            name: 'Pilote gfgfg',
+            name: 'Pilote inconnu',
             user: {
-                username: 'gfghter'
+                username: 'Anonymous'
             },
             preview: {
                 url: "../images/crea_costume_3.png"
