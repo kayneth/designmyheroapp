@@ -1,49 +1,64 @@
-.card-vertical{
-  display: flex;
-  flex-direction: column;
-  margin: 20px;
-  border: 1px solid $black;
-  border-radius: 5px 5px 10px 10px;
-  overflow: hidden;
-
-  .title{
-    text-align: center;
-    font-weight: 400;
-  }
-
-  .img-container{
-    overflow: hidden;
-    border-bottom: 1px solid $black;
-    img{
-      @extend .img-responsive;
-      margin-bottom: -5px;
-
-    }
-  }
+#creationsList .row{
+  margin: 10px 0;
 }
 
-.card-horizontal{
-  @extend .row;
-  height: 250px;
+.card-reveal {
+  height: 500px;
   margin: 0;
-  margin-top: 10px;
+  position: relative;
 
-  &:nth-child(even){
-    flex-direction: row-reverse;
-  }
-
-  .img-container{
-    display: none;
-    @extend .col-sm-5;
-    max-height: 100%;
+  .img-container {
     overflow: hidden;
     padding: 0;
-    img{
+    img {
+      max-width: 100%;
       max-height: 100%;
       width: auto;
-      margin-bottom: -5px;
-
+      display: block;
+      margin: 0 auto ;
     }
+    a{
+      text-decoration: none;
+    }
+  }
+    .hidden {
+      position: absolute;
+      z-index: -1;
+      top: 50%;
+      transform: translate(0, -50%);
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      -webkit-transition: opacity 0.3s ease-in-out;
+      -moz-transition: opacity 0.3s ease-in-out;
+      -o-transition: opacity 0.3s ease-in-out;
+      transition: opacity 0.3s ease-in-out;
+
+      .caption .centered {
+        display: table-cell;
+        vertical-align: middle;
+      }
+    }
+    .caption {
+      position: absolute;
+      top: 0;
+      display: table;
+      width: 100%;
+      height: 100%;
+      background-color: white; /* fallback for IE8 */
+      background-color: rgba(255, 255, 255, 0.9);
+      font: 14px/1.6 Lato, sans-serif;
+      text-transform: uppercase;
+      font-weight: normal;
+      color: #777;
+      letter-spacing: 1px;
+      text-align: center;
+      text-rendering: optimizeLegibility;
+    }
+
+  &:hover .hidden {
+    z-index: 100000;
+    opacity: 1;
   }
 
   .card-content{
@@ -54,21 +69,17 @@
     justify-content: center;
     margin: 0;
     padding: 20px;
-
+    text-align: center;
     border: 1px solid lighten($black, 60%);
     border-radius: 5px;
 
-    .category{
-      margin: 10px;
-      color: lighten($black, 60%);
+    .title{
+      margin: 10px auto;
+      color: lighten($black, 40%);
       text-transform: uppercase;
       font-size: 0.8em;
     }
 
-    .title{
-      margin: 10px;
-
-    }
   }
 
   @media all and (min-width: 48em){
@@ -93,3 +104,7 @@
     }
   }
 }
+
+
+
+
