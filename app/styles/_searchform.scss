@@ -38,3 +38,11 @@
     margin-right: 5px;
   }
 }
+
+@media all and (max-width: 48em){
+  .searchform-container {
+    input {
+      padding: 7px 10px 7px 10px;
+    }
+  }
+}

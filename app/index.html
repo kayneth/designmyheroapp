@@ -29,7 +29,11 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <nav ng-controller="NavbarCtrl">
+    <div id="scroll-top"></div>
+    <input type="checkbox" id="menu">
+    <label for="menu" onclick></label>
+
+    <nav role="off-canvas" ng-controller="NavbarCtrl">
       <div class="main-content">
         <a href="#!/" class="logo">
             <img src="images/logo.svg" alt="logo de DesignMyHero" id="logo-nav" class="img-responsive">
@@ -66,77 +70,77 @@
       </ul>
     </nav>
 
+    <div class="main-container">
+        <main ng-view=""></main>
 
-    <main ng-view=""></main>
-
-
-    <footer class="footer container-fluid">
-        <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-3">
-                <h4>
-                    Nous contacter
-                </h4>
-                <img src="images/logo_mini.svg" alt="" class="img-responsive">
-                <address>
-                    25 rue des Tanneries <br>
-                    43000 Le Puy-en-Velay
-                </address>
-                <a href="mailto:contact.orifly@gmail.com" id="btn-contact">Contact</a>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-3">
-                <h4>
-                    A propos
-                </h4>
-                <ul>
-                    <li><a href="">Qui sommes-nous</a></li>
-                    <li><a href="">CGU & CGC</a></li>
-                    <li><a href="">Mentions Légales</a></li>
-                    <li><a href="">Droits d'auteurs et marques</a></li>
-                    <li><a href="">F.A.Q</a></li>
-                </ul>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-3">
-                <h4>
-                    Découvrir
-                </h4>
-                <ul>
-                    <li><a href="">Pourquoi devenir créateur</a></li>
-                    <li><a href="">Confiance et sécurité</a></li>
-                    <li><a href="">Parrainer un ami</a></li>
-                    <li><a href="">Règles</a></li>
-                </ul>
-            </div>
-            <div class="col-xs-12 col-sm-6 col-md-3">
-                <h4 class="text-center">
-                    Restez connecté
-                </h4>
-                <div class="row">
-                    <div class="col-xs-4 text-center">
-                        <a href="https://www.facebook.com/designmyhero" target="_blank">
-                            <i class="fa fa-facebook fa-2x transparent" aria-hidden="true"></i>
-                        </a>
+        <footer class="footer container-fluid">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-3">
+                    <h4>
+                        Nous contacter
+                    </h4>
+                    <img src="images/logo_mini.svg" alt="" class="img-responsive">
+                    <address>
+                        25 rue des Tanneries <br>
+                        43000 Le Puy-en-Velay
+                    </address>
+                    <a href="mailto:contact.orifly@gmail.com" id="btn-contact">Contact</a>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3">
+                    <h4>
+                        A propos
+                    </h4>
+                    <ul>
+                        <li><a href="">Qui sommes-nous</a></li>
+                        <li><a href="">CGU & CGC</a></li>
+                        <li><a href="">Mentions Légales</a></li>
+                        <li><a href="">Droits d'auteurs et marques</a></li>
+                        <li><a href="">F.A.Q</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3">
+                    <h4>
+                        Découvrir
+                    </h4>
+                    <ul>
+                        <li><a href="">Pourquoi devenir créateur</a></li>
+                        <li><a href="">Confiance et sécurité</a></li>
+                        <li><a href="">Parrainer un ami</a></li>
+                        <li><a href="">Règles</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-sm-6 col-md-3">
+                    <h4 class="text-center">
+                        Restez connecté
+                    </h4>
+                    <div class="row">
+                        <div class="col-xs-4 text-center">
+                            <a href="https://www.facebook.com/designmyhero" target="_blank">
+                                <i class="fa fa-facebook fa-2x transparent" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="col-xs-4 text-center">
+                            <a href="https://www.instagram.com/?hl=fr" target="_blank">
+                                <i class="fa fa-instagram fa-2x transparent" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                        <div class="col-xs-4 text-center">
+                            <a href="https://fr.pinterest.com/" target="_blank">
+                                <i class="fa fa-pinterest fa-2x transparent" aria-hidden="true"></i>
+                            </a>
+                        </div>
                     </div>
-                    <div class="col-xs-4 text-center">
-                        <a href="https://www.instagram.com/?hl=fr" target="_blank">
-                            <i class="fa fa-instagram fa-2x transparent" aria-hidden="true"></i>
-                        </a>
-                    </div>
-                    <div class="col-xs-4 text-center">
-                        <a href="https://fr.pinterest.com/" target="_blank">
-                            <i class="fa fa-pinterest fa-2x transparent" aria-hidden="true"></i>
+                    <div id="btn-scroll-bot">
+                        <a href="#scroll-top" du-smooth-scroll duration="2000">
+                            <button class="rounded" id="header-scroller">
+                                <i class="fa fa-long-arrow-up"></i>
+                            </button>
                         </a>
                     </div>
                 </div>
-                <div id="btn-scroll-bot">
-                    <a href="#logo-nav" du-smooth-scroll duration="2000">
-                        <button class="rounded" id="header-scroller">
-                            <i class="fa fa-long-arrow-up"></i>
-                        </button>
-                    </a>
-                </div>
             </div>
-        </div>
-    </footer>
+        </footer>
+    </div>
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
