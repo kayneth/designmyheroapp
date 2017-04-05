@@ -22,14 +22,13 @@ angular.module('designmyheroappApp')
 
 
             productModel.getModels().then(function (data) {
-                console.log(data);
                 $scope.models = data.products;
             }, function (res) {
                 console.log(res);
             });
 
             $scope.toggleModel = function ($event, model) {
-                var classname = 'active'
+                var classname = 'active';
                 var classList = $event.currentTarget.classList;
                 var isActive = classList.contains(classname);
 

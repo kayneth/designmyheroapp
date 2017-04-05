@@ -14,7 +14,7 @@ angular.module('designmyheroappApp')
     var scope = this;
 
     scope.login = function () {
-      ngDialog.open({
+        var dialog = ngDialog.open({
         template: 'views/modals/login.html',
         controller: ['$scope', 'dmhAuthManager', function($scope, dmhAuthManager) {
             $scope.user = {
@@ -24,7 +24,9 @@ angular.module('designmyheroappApp')
 
             $scope.loginApi = function() {
                 console.log($scope.user);
-                dmhAuthManager.login($scope.user);
+                dmhAuthManager.login($scope.user).then(function (res) {
+                    dialog.close();
+                });
             };
 
             $scope.register = function () {
@@ -46,7 +48,6 @@ angular.module('designmyheroappApp')
           template: 'views/modals/saveCreation.html',
           controller: ['$scope', 'creation', function ($scope, creation) {
               $scope.creation = creation.currentCreation;
-              console.log($scope.creation);
               $scope.screenshot = screenshot;
               $scope.creation.preview = blob;
               $scope.postCreation = function () {

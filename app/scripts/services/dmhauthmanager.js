@@ -8,7 +8,7 @@
  * Service in the designmyheroappApp.
  */
 angular.module('designmyheroappApp')
-.service('dmhAuthManager', ['$http', '$rootScope', 'authManager', 'jwtHelper', '$location', 'dmhToast', function ($http, $rootScope, authManager,jwtHelper, $location, dmhToast) {
+.service('dmhAuthManager', ['$http', '$rootScope', 'authManager', 'jwtHelper', '$location', 'dmhToast', '$q', function ($http, $rootScope, authManager,jwtHelper, $location, dmhToast, $q) {
   // AngularJS will instantiate a singleton by calling "new" on this function
   var scope = this;
 
@@ -53,8 +53,12 @@ angular.module('designmyheroappApp')
 
   scope.login = function (user) {
 
+    var deffered = $q.defer();
+
     $http.post($rootScope.api + '/login_check', user).then(function success(res) {
       console.log(res);
+
+      deffered.resolve(res);
 
       scope.access_token = res.data.token;
 
@@ -76,7 +80,10 @@ angular.module('designmyheroappApp')
 
     }, function error(res) {
       console.log(res);
+      deffered.reject(res);
     });
+    
+    return deffered.promise;
   };
 
   scope.logout = function () {

@@ -10,22 +10,24 @@
 angular.module('designmyheroappApp')
 .service('creation', ['$q','$http','$rootScope', 'toFormData', function ($q, $http, $rootScope, toFormData) {
 
-  var scope = this;
+    var scope = this;
 
-  scope.currentCreation = {
+    scope.visualCreation = {};
+
+    scope.currentCreation = {
       name: "Ma superbe création",
       products: [],
       private: false
-  };
+    };
 
-  scope.getCreations = function ()
-  {
+    scope.getCreations = function ()
+    {
     var deffered = $q.defer();
 
     return deffered.promise;
-  };
+    };
 
-  scope.post = function (creation) {
+    scope.post = function (creation) {
       var deffered = $q.defer();
 
       creation = creation || scope.currentCreation;
@@ -59,11 +61,11 @@ angular.module('designmyheroappApp')
       });
 
       return deffered.promise;
-  };
+    };
 
-  $rootScope.$on('authenticated', function () {
+    $rootScope.$on('authenticated', function () {
       scope.currentCreation.private = true;
-  });
+    });
 
     scope.convertToSlug = function (Text) {
         return Text
