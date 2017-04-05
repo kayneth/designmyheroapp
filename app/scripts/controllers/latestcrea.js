@@ -18,7 +18,6 @@ angular.module('designmyheroappApp')
       },{
           skipAuthorization: true
       }).then(function (res) {
-          console.log(res);
           $scope.lastcrea = res.data.creations;
       }, function (err) {
           console.log(err);

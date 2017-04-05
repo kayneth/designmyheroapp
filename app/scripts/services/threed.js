@@ -99,46 +99,41 @@ angular.module('designmyheroappApp')
             element.meshes = newMeshes[0];
             scope.models.push(element);
             creation.currentCreation.products.push(model.id);
-
-            console.log(scope.models);
-            console.log(creation.currentCreation);
+            creation.visualCreation.products.push(model);
         });
     });
 
     $rootScope.$on('remove-model', function (event, model) {
-        console.log("il faut supprimer un élément");
         scope.removeModel(model.category.name);
     });
 
     scope.removeModel = function(type){
 
         scope.models.forEach(function (element, index, array) {
-            console.log(element);
             if(element.product.category.name == type)
             {
                 element.meshes.dispose();
                 array.splice(index, 1);
                 creation.currentCreation.products.splice(index, 1);
+                creation.visualCreation.products.splice(index, 1);
             }
         });
     };
 
-    scope.loadProducts = function(products) {
-      products.forEach(function (value, index, array) {
-          BABYLON.SceneLoader.ImportMesh("", "", value._links.model.href, scope.scene, function (newMeshes, particleSystems) {
-              var element = {};
+    scope.loadProducts = function(creationToLoad) {
+        var products = creationToLoad.products;
+        products.forEach(function (value, index, array) {
+              BABYLON.SceneLoader.ImportMesh("", "", value._links.model.href, scope.scene, function (newMeshes, particleSystems) {
+                  var element = {};
 
-              scope.removeModel(value.category.name);
+                  scope.removeModel(value.category.name);
 
-              element.product = value;
-              element.meshes = newMeshes[0];
-              scope.models.push(element);
-              creation.currentCreation.products.push(value.id);
-
-              console.log(scope.models);
-              console.log(creation.currentCreation);
-          });
-      })
+                  element.product = value;
+                  element.meshes = newMeshes[0];
+                  scope.models.push(element);
+                  creation.currentCreation.products.push(value.id);
+              });
+        })
     };
 
     scope.createScreenshot3D = function (engine, size, callback, camera) {

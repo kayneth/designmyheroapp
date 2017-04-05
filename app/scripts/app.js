@@ -21,17 +21,20 @@ angular
     'angular-jwt',
     'ngDialog',
     'duScroll',
-    'ngToast'
+    'ngToast',
+    'ngLodash'
 ])
-.run(['$rootScope', '$location', 'dmhAuthManager', function($rootScope, $location, dmhAuthManager) {
+.run(['$rootScope', '$location', 'dmhAuthManager','basket', function($rootScope, $location, dmhAuthManager, basket) {
 
     $rootScope.apiRoot = "http://127.0.0.1:8000";
-    $rootScope.apiRoot = "http://api.designmyhero.iut-lepuy.fr";
+    // $rootScope.apiRoot = "http://api.designmyhero.iut-lepuy.fr";
     $rootScope.api =$rootScope.apiRoot+"/api";
 
     $rootScope.absUrl = $location.absUrl();
 
     dmhAuthManager.initialize();
+
+    $rootScope.basket = basket;
 
 }])
 .config(function ($routeProvider) {
@@ -63,6 +66,11 @@ angular
           templateUrl: 'views/showcreation.html',
           controller: 'ShowcreationCtrl',
           controllerAs: 'showCreation'
+        })
+        .when('/basket', {
+          templateUrl: 'views/basket.html',
+          controller: 'BasketCtrl',
+          controllerAs: 'basket'
         })
         .otherwise({
             redirectTo: '/'

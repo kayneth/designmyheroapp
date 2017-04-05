@@ -4,8 +4,6 @@
     <meta charset="utf-8">
     <title>Design My Hero</title>
     <meta name="description" content="">
-      <meta property="og:image" content="{{ apiRoot }}/{{ creation.previewLink }}" />
-      <meta property="og:url" content="{{ absUrl }}" />
       <meta property="og:title" content="{{ creation.name }} réalisée par {{ creation.user ? creation.user.username : 'Utilisateur anonyme' }}" /> <!-- A MODIFIER -->
     <meta name="viewport" content="width=device-width">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
@@ -22,6 +20,26 @@
     <!-- endbuild -->
   </head>
   <body>
+  <!-- Facebook Graph API -->
+  <script>
+      window.fbAsyncInit = function() {
+          FB.init({
+              appId      : '607494132779136',
+              xfbml      : true,
+              version    : 'v2.8'
+          });
+          FB.AppEvents.logPageView();
+      };
+
+      (function(d, s, id){
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) {return;}
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/en_US/sdk.js";
+          fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));
+  </script>
+
     <toast></toast>
 
     <!--[if lte IE 8]>
@@ -48,10 +66,10 @@
               Mon compte
             </a>
           </li>
-          <li>
-            <a href="">
+          <li id="basketLink">
+            <a href="#!/basket">
                 <i class="fa fa-shopping-bag"></i>
-                Mon panier
+                Mon panier <span id="basketLength">{{ basket.getSize() }}</span>
             </a>
           </li>
         </ul>
@@ -172,6 +190,7 @@
     <script src="bower_components/ng-dialog/js/ngDialog.js"></script>
     <script src="bower_components/angular-scroll/angular-scroll.js"></script>
     <script src="bower_components/ngToast/dist/ngToast.js"></script>
+    <script src="bower_components/ng-lodash/build/ng-lodash.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -195,6 +214,7 @@
         <script src="scripts/services/toformdata.js"></script>
         <script src="scripts/controllers/showcreation.js"></script>
         <script src="scripts/directives/toggleclass.js"></script>
+        <script src="scripts/controllers/basket.js"></script>
         <!-- endbuild -->
 </body>
 </html>
