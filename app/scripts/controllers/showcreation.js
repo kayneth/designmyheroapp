@@ -8,14 +8,14 @@
  * Controller of the designmyheroappApp
  */
 angular.module('designmyheroappApp')
-  .controller('ShowcreationCtrl', ['$rootScope','$scope','threeD', 'dmhToast','$http','$routeParams', function ($rootScope, $scope, threeD, dmhToast, $http, $routeParams) {
+  .controller('ShowcreationCtrl', ['$rootScope','$scope','threeD', 'dmhToast', 'dmhModal','$http','$routeParams', function ($rootScope, $scope, threeD, dmhToast, dmhModal, $http, $routeParams) {
       $scope.params = $routeParams;
 
 
       $http.get($rootScope.api+'/creations/'+$scope.params.id).then(function(res) {
           console.log(res);
-          $scope.creation = res.data.creation;
-          //console.log(res);
+          $scope.creation = $rootScope.creation = res.data.creation;
+          console.log($scope.creation);
           $scope.ready = true;
 
           threeD.loadProducts($scope.creation.products);

@@ -18,7 +18,7 @@
                                     <p class="title">
                                        {{ crea.name }}
                                         <br>
-                                        créée par {{ crea.user.username }}
+                                        créée par {{ crea.user ? crea.user.username : "Anonymous" }}
                                     </p>
                                     <a href="#!/creation/{{ crea.id }}" class="btn-discover">Découvrir</a>
                                 </div>

@@ -37,9 +37,9 @@ angular.module('designmyheroappApp')
     };
 
     methods.log = function (formdata) {
-        for (var pair of formdata.entries()) {
-            console.log(pair[0]+ ', ' + pair[1]);
-        }
+        // for (var pair of formdata.entries()) {
+        //     console.log(pair[0   ]+ ', ' + pair[1]);
+        // }
     };
 
     // Public API here

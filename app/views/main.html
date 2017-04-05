@@ -65,37 +65,18 @@
     <div id="creationsList" class="container-fluid">
         <div class="row">
 
-            <div class="card-reveal col-md-6 col-xs-12">
+            <div class="card-reveal col-md-6 col-xs-12" ng-repeat="crea in lastcrea">
                 <a href="">
                     <div class="img-container">
-                        <img src="../images/crea_costume_1.png" alt="Costume classique">
+                        <img ng-src="{{ apiRoot }}/{{ crea.previewLink }}" alt="{{ crea.preview.alt }}">
                         <div class="hidden">
                             <div class="caption">
                                 <div class="card-content centered">
                                     <p class="title">
-                                        Costume classique</br>
-                                        créé par Anonymous
+                                        {{ crea.name }}</br>
+                                        créé par {{ crea.user ? crea.user.username : "Anonymous" }}
                                     </p>
-                                    <a href="" class="btn-discover">Découvrir</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <div class="card-reveal col-md-6 col-xs-12">
-                <a href="">
-                    <div class="img-container">
-                        <img src="../images/crea_costume_2.png" alt="Pilote Rogue Squadron">
-                        <div class="hidden">
-                            <div class="caption">
-                                <div class="card-content centered">
-                                    <p class="title">
-                                        Pilote Rogue Squadron</br>
-                                        créé par Anonymous
-                                    </p>
-                                    <a href="" class="btn-discover">Découvrir</a>
+                                    <a href="#!/creation/{{ crea.id }}" class="btn-discover">Découvrir</a>
                                 </div>
                             </div>
                         </div>
@@ -108,7 +89,7 @@
 
     <div class="container-fluid">
         <div class="row end-xs">
-            <a href="" class="btn-flat red-text">
+            <a href="#!/latestcrea" class="btn-flat red-text">
                 Toutes les créations <i class="fa fa-angle-right" aria-hidden="true"></i>
             </a>
         </div>
