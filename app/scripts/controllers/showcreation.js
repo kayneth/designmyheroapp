@@ -48,8 +48,11 @@ angular.module('designmyheroappApp')
           threeD.toBlob().then(function (res) {
               console.log(res.url);
               console.log(res.blob);
-              dmhModal.saveCreation(res.url, res.blob);
-              deffered.resolve("success");
+              dmhModal.saveCreation(res.url, res.blob).then(function (res) {
+                  deffered.resolve(res);
+              }, function (res) {
+                  deffered.reject(res);
+              });
           });
 
           return deffered.promise;

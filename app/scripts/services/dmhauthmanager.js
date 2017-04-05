@@ -82,7 +82,7 @@ angular.module('designmyheroappApp')
       console.log(res);
       deffered.reject(res);
     });
-    
+
     return deffered.promise;
   };
 
