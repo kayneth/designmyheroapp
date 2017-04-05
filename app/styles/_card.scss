@@ -3,9 +3,12 @@
 }
 
 .card-reveal {
-  height: 500px;
   margin: 0;
   position: relative;
+
+  @media all and (min-width :48em){
+    height: 500px;
+  }
 
   .img-container {
     overflow: hidden;
@@ -23,7 +26,6 @@
   }
     .hidden {
       position: absolute;
-      z-index: -1;
       top: 50%;
       transform: translate(0, -50%);
       width: 100%;

@@ -1,3 +1,113 @@
+/* Advanced Checkbox Hack */
+body { -webkit-animation: bugfix infinite 1s; }
+@-webkit-keyframes bugfix { from {padding:0;} to {padding:0;} }
+
+input[type=checkbox] {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+
+label {
+  position: absolute;
+  left:0;
+  display:none;
+  width:2em;
+  height:2.25em;
+  padding:.35em;
+  font-size:1.1em;
+  color:#fff;
+  transition:color .3s ease-in-out;
+  cursor: pointer;
+  user-select:none;
+  margin:0;
+  background:$accent-color;
+}
+
+/* big screens */
+nav[role="off-canvas"] {
+  position:relative;
+  transition-duration: .3s, .5s;
+  transition-timing-function: ease-in-out;
+  transition-property: left, opacity, box-shadow;
+
+  a {
+    transition:color .3s ease-in-out;
+  }
+
+  ul > li{
+      transition-duration: .3s;
+      transition-timing-function: ease-in-out;
+      transition-property: box-shadow, color, opacity, padding-left;
+    }
+}
+
+
+/* small screens */
+@media screen and (max-width: 48em) {
+  $menu_width: 20em;
+  $content_offset : .5em;
+
+
+  nav[role="off-canvas"] {
+    position:absolute;
+    z-index: 10;
+    top:3em;
+    left:-$menu_width;
+    width: $menu_width;
+    background:rgba(72, 124, 181, 1);
+  }
+
+  label {
+    display:block;
+    z-index: 10;
+  }
+
+  label:after {
+    position: absolute;
+    right: .25em;
+    top: 0;
+    content:"\2261";
+    font-size:1.8em;
+  }
+
+
+  input:checked ~ nav[role="off-canvas"] {
+    opacity:1;
+    left:0;
+    box-shadow:-30em 0 0 30em rgba(0, 0, 0, .3);
+
+    ul{
+      padding: 0;
+     > li {
+      padding: .55em;
+
+      &:hover {
+        padding-left:3.5em;
+      }
+
+      &:after {
+        position:absolute;
+        right:.25em;
+        content:"\203A";
+        font: bold 1.4em sans-serif;
+        color:inherit;
+      }
+     }
+    }
+  }
+
+  input:checked ~ .main-container {
+    margin-left: $menu_width + $content_offset;
+    margin-right:-($menu_width + $content_offset);
+  }
+}
+
+
+
+
+
+
 nav{
   padding-top: 10px;
   @extend .container-fluid;
