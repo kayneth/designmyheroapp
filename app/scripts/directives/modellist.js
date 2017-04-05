@@ -20,20 +20,29 @@ angular.module('designmyheroappApp')
         controller: ['$scope', '$rootScope', '$http', 'productModel', function ($scope, $rootScope, $http, productModel) {
             $scope.models = {};
 
-            $scope.getModelList = function () {
-                productModel.getModels().then(function (data) {
-                    console.log(data);
-                    $scope.models = data.products;
-                }, function (res) {
-                    console.log(res);
-                })
-            };
 
-            $scope.showModel = function (model) {
-                $rootScope.$broadcast("show-model", model);
-            };
+            productModel.getModels().then(function (data) {
+                console.log(data);
+                $scope.models = data.products;
+            }, function (res) {
+                console.log(res);
+            });
 
-            $scope.getModelList();
+            $scope.toggleModel = function ($event, model) {
+                var classname = 'active'
+                var classList = $event.currentTarget.classList;
+                var isActive = classList.contains(classname);
+
+                if(isActive)
+                {
+                    classList.remove(classname);
+                    $rootScope.$broadcast("remove-model", model);
+                }else{
+                    classList.add(classname);
+                    $rootScope.$broadcast("show-model", model);
+                }
+
+            };
         }]
     };
   });

@@ -105,6 +105,11 @@ angular.module('designmyheroappApp')
         });
     });
 
+    $rootScope.$on('remove-model', function (event, model) {
+        console.log("il faut supprimer un élément");
+        scope.removeModel(model.category.name);
+    });
+
     scope.removeModel = function(type){
 
         scope.models.forEach(function (element, index, array) {
