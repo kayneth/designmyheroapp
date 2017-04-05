@@ -8,7 +8,7 @@
  * Service in the designmyheroappApp.
  */
 angular.module('designmyheroappApp')
-.service('dmhModal', ['ngDialog', 'dmhAuthManager','dmhToast', function (ngDialog, dmhAuthManager, dmhToast) {
+.service('dmhModal', ['ngDialog', 'dmhAuthManager','dmhToast', '$q', function (ngDialog, dmhAuthManager, dmhToast, $q) {
 // AngularJS will instantiate a singleton by calling "new" on this function
 
     var scope = this;
@@ -44,6 +44,8 @@ angular.module('designmyheroappApp')
     };
 
     scope.saveCreation = function (screenshot, blob) {
+        var deffered = $q.defer();
+
       var dialog = ngDialog.open({
           template: 'views/modals/saveCreation.html',
           controller: ['$scope', 'creation', function ($scope, creation) {
@@ -54,8 +56,11 @@ angular.module('designmyheroappApp')
                   creation.post(creation.currentCreation).then(function (res) {
                       var toast = dmhToast.create('Sauvegarde réussie');
                       dialog.close();
+                      deffered.resolve(res);
                   }, function (res) {
-                      dmhToast.create('Une erreur est survenue lors de la sauvegarde.', "danger")
+                      dmhToast.create('Une erreur est survenue lors de la sauvegarde.', "danger");
+                      dialog.close();
+                      deffered.reject(res);
                   });
               }
           }]
