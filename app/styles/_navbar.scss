@@ -8,7 +8,7 @@ input[type=checkbox] {
   left: -9999px;
 }
 
-label {
+#label-menu {
   position: absolute;
   left:0;
   display:none;
@@ -58,12 +58,12 @@ nav[role="off-canvas"] {
     background:rgba(72, 124, 181, 1);
   }
 
-  label {
+  #label-menu {
     display:block;
     z-index: 10;
   }
 
-  label:after {
+  #label-menu:after {
     position: absolute;
     right: .25em;
     top: 0;

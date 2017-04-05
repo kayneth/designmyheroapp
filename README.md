@@ -15,7 +15,6 @@ Running `grunt test` will run the unit tests with karma.
 * Gestion Panier
 * Mise en localStorage du panier
 * Envoie sur le serveur du panier
-* Menu responsive
 * Page panier
 * inscription
 * Partage réseaux sociaux de
