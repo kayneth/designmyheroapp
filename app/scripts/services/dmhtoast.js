@@ -13,14 +13,15 @@ angular.module('designmyheroappApp')
 
   scope.create = function (content, classname, dismiseOnTimeout) {
     dismiseOnTimeout = dismiseOnTimeout || true;
-    classname = classname || '';
+    classname = classname || 'success';
 
     ngToast.create({
       content: content,
       timeout: 4000,
       dismissOnTimeout: dismiseOnTimeout,
       dismissButton: true,
-      animation: 'slide'
+      animation: 'slide',
+      className: classname
     })
   };
 }]);

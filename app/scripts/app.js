@@ -57,6 +57,11 @@ angular
           controller: 'LatestcreaCtrl',
           controllerAs: 'latestcrea'
         })
+        .when('/creation/:id', {
+          templateUrl: 'views/showcreation.html',
+          controller: 'ShowcreationCtrl',
+          controllerAs: 'showCreation'
+        })
         .otherwise({
             redirectTo: '/'
         });

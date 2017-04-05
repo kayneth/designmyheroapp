@@ -118,21 +118,22 @@ angular.module('designmyheroappApp')
         });
     };
 
-    scope.toBlob = function () {
-        if (scope.canvas.toBlob) {
-            scope.canvas.toBlob(
-                function (blob) {
-                    scope.preview2D = window.URL.createObjectURL(blob)  ;
-                    console.log(blob);
-                    // Do something with the blob object,
-                    // e.g. creating a multipart form for file uploads:
-                    // var formData = new FormData();
-                    // formData.append('file', blob, fileName);
-                    /* ... */
-                },
-                'image/png'
-            );
-        }
+    scope.loadProducts = function(products) {
+      products.forEach(function (value, index, array) {
+          BABYLON.SceneLoader.ImportMesh("", "", value._links.model.href, scope.scene, function (newMeshes, particleSystems) {
+              var element = {};
+
+              scope.removeModel(value.category.name);
+
+              element.product = value;
+              element.meshes = newMeshes[0];
+              scope.models.push(element);
+              creation.currentCreation.products.push(value.id);
+
+              console.log(scope.models);
+              console.log(creation.currentCreation);
+          });
+      })
     };
 
     scope.createScreenshot3D = function (engine, size, callback, camera) {
@@ -206,6 +207,35 @@ angular.module('designmyheroappApp')
             texture = null;
 
             engine.scenes[0].activeCamera = scope.camera;
+    };
+
+    scope.toBlob = function () {
+        var deffered = $q.defer();
+
+        scope.createScreenshot3D(scope.engine, null, function(ssCanvas) {
+            if (ssCanvas.toBlob) {
+                ssCanvas.toBlob(
+                    function (blob) {
+                        var url = window.URL.createObjectURL(blob);
+
+                        var returned = {
+                            url : url,
+                            blob: blob
+                        };
+
+                        deffered.resolve(returned);
+                        // Do something with the blob object,
+                        // e.g. creating a multipart form for file uploads:
+                        // var formData = new FormData();
+                        // formData.append('file', blob, fileName);
+                        /* ... */
+                    },
+                    'image/png'
+                );
+            }
+        }.bind(scope));
+
+        return deffered.promise;
     };
 
     scope.getScreenshotURL = function () {

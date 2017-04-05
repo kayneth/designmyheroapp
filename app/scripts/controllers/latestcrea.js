@@ -8,53 +8,19 @@
  * Controller of the designmyheroappApp
  */
 angular.module('designmyheroappApp')
-  .controller('LatestcreaCtrl', ['$scope', function ($scope) {
-    $scope.lastcrea=[
-    //{
-    ////    name: 'Costume médiéval',
-    ////    user: {
-    ////        username: 'Estelle'
-    ////    },
-    ////    preview: {
-    ////        url: "../images/medieval.jpg"
-    ////    }
-    ////},
-    ////    {
-    ////        name: 'Costume alternatif',
-    ////        user: {
-    ////            username: 'Giselle'
-    ////        },
-    ////        preview: {
-    ////            url: "../images/girl.jpg"
-    ////        }
-    ////    },
-        {
-            name: 'Costume classique',
-            user: {
-                username: 'Roberto'
-            },
-            preview: {
-                url: "../images/crea_costume_1.png"
-            }
-        },
-        {
-            name: 'Pilote Rogue Squadron',
-            user: {
-                username: 'Gibbs Darklighter'
-            },
-            preview: {
-                url: "../images/crea_costume_2.png"
-            }
-        },
-        {
-            name: 'Pilote inconnu',
-            user: {
-                username: 'Anonymous'
-            },
-            preview: {
-                url: "../images/crea_costume_3.png"
-            }
-        }
+  .controller('LatestcreaCtrl', ['$rootScope','$scope','$http', function ($rootScope, $scope, $http) {
 
-        ];
+    $scope.lastcrea=[];
+
+      $http({
+          url: $rootScope.api + '/creations',
+          method: 'GET'
+      },{
+          skipAuthorization: true
+      }).then(function (res) {
+          console.log(res);
+          $scope.lastcrea = res.data.creations;
+      }, function (err) {
+          console.log(err);
+      });
   }]);

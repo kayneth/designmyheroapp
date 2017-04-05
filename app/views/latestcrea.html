@@ -11,15 +11,16 @@
             <div class="card-reveal col-md-4 col-xs-12" ng-repeat="crea in lastcrea">
                 <a href="">
                     <div class="img-container">
-                        <img src="{{ crea.preview.url }}" alt="{{ crea.name }}">
+                        <img ng-src="{{ apiRoot }}/{{ crea.previewLink }}" alt="{{ crea.name }}">
                         <div class="hidden">
                             <div class="caption">
                                 <div class="card-content centered">
                                     <p class="title">
-                                       {{ crea.name }}</br>
-                                        créé par {{ crea.user.username }}
+                                       {{ crea.name }}
+                                        <br>
+                                        créée par {{ crea.user.username }}
                                     </p>
-                                    <a href="" class="btn-discover">Découvrir</a>
+                                    <a href="#!/creation/{{ crea.id }}" class="btn-discover">Découvrir</a>
                                 </div>
                             </div>
                         </div>
