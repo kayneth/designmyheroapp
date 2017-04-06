@@ -1,5 +1,18 @@
-<ul class="row">
-    <li ng-repeat="model in models" class="col-xs-6 col-sm-4 col-md-3" ng-click="toggleModel($event, model)">
-        <img src="{{ model._links.thumbnail.href }}" alt="{{ model.name }}" class="img-responsive">
-    </li>
-</ul>
+
+
+<div class="container-fluid">
+    <div class="row" ng-repeat="category in categories">
+        <div class="col-xs-12">
+            <h3>
+                {{ category.name }}
+            </h3>
+        </div>
+        <div class="col-xs-12" id="list-products-{{ category.id }}">
+            <ul class="row">
+                <li ng-repeat="model in getProductsByCategoryId($index)" data-id="{{ category.id }}" class="col-xs-6 col-sm-4 col-md-3" ng-click="toggleModel($event, model)">
+                    <img src="{{ model._links.thumbnail.href }}" alt="{{ model.name }}" class="img-responsive">
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -65,6 +65,8 @@ angular.module('designmyheroappApp')
               }
           }]
       });
+
+        return deffered.promise;
     };
 
 

@@ -11,7 +11,6 @@ angular.module('designmyheroappApp')
   .controller('ShowcreationCtrl', ['$rootScope','$scope','threeD', 'dmhToast', 'dmhModal','$http','$routeParams','basket', 'creation', '$q', 'lodash', function ($rootScope, $scope, threeD, dmhToast, dmhModal, $http, $routeParams, basket, creation, $q, lodash) {
       $scope.params = $routeParams;
 
-
       $http.get($rootScope.api+'/creations/'+$scope.params.id).then(function(res) {
           //Creation loadé et à ne pas modifier
           $scope.creation = $rootScope.creation = res.data.creation;

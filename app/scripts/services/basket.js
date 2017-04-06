@@ -22,8 +22,8 @@ angular.module('designmyheroappApp')
 
       }
       scope.basket.items.push({creation: item, quantity: 1});
-      console.log(scope.getSize());
-      console.log(scope.basket);
+
+      scope.updateLocalStorage();
   };
 
   scope.removeItem = function (item) {
@@ -32,6 +32,7 @@ angular.module('designmyheroappApp')
       if (index > -1) {
           array.splice(index, 1);
       }
+      scope.updateLocalStorage();
   };
 
     scope.removeByCategory = function (type) {
@@ -43,8 +44,9 @@ angular.module('designmyheroappApp')
         });
     };
 
-  scope.load = function (idUser) {
-
+  scope.load = function () {
+      var lS = localStorage.getItem("basket");
+      scope.basket = JSON.parse(lS);
   };
 
   scope.inBasket = function (arr, item) {
