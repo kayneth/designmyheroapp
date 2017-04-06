@@ -1,1 +1,97 @@
-<p>This is the basket view.</p>
+<section id="basket">
+    <header class="center-xs">
+        <h2>
+            Panier
+        </h2>
+    </header>
+    <hr>
+    <div id="basketList" class="container-fluid center-md">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="img-container">
+                    <img ng-src="{{ apiRoot }}/{{ crea.previewLink }}" alt="{{ crea.name }}">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <p class="red-text">
+                    Article
+                </p>
+                <p class="title">
+                    Costume personnalisé
+                </p>
+                <a href="">Modifier</a>
+                <a href="">Supprimer</a>
+
+            </div>
+            <div class="col-md-4">
+                <p class="red-text">
+                    Prix TTC
+                </p>
+                <p class="title">
+                    400.00€
+                </p>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <p>Code promotionnel et carte cadeau</p>
+                <form action="" id="searchform">
+                    <div class="searchform-container">
+                        <input type="text">
+                        <button type="submit">Confirmer</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>SOUS TOTAL</p>
+                        <p>TVA</p>
+                        <p class="red-text">TOTAL</p>
+                    </div>
+                    <div class="col-md-6">
+                        <p>400.00€</p>
+                        <p>80.00€</p>
+                        <p class="red-text">400.00€</p>
+                    </div>
+
+                </div>
+
+                <div class="row end-xs">
+                    <a href="" class="btn-flat">
+                        Valider
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid" id="step-list">
+        <div class="row around-xs">
+
+            <div class="col-sm-3 cadre">
+                <h3 class="title">Notre application web</h3>
+                <p>
+                    Connectez vous sur notre site <span class="red-text">designmyhero.iut-lepuy.fr</span> et cliquez sur <span class="blue-text">créer mon costume</span>
+                </p>
+            </div>
+
+            <div class="col-sm-3 cadre">
+                <h3 class="title">Personnalisez à volonté</h3>
+                <p>
+                    Vos envies n'ont plus de limite : taille, matière, couleur...
+                </p>
+            </div>
+
+            <div class="col-sm-3 cadre">
+                <h3 class="title">Obtenez votre patron</h3>
+                <p>
+                    Une fois validé, réalisez votre vêtement quand vous le voulez
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
